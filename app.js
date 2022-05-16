@@ -7,11 +7,15 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+
 // middleware
 app.use(express.static('public'));
-app.use(bodyparser.urlencoded({
-  extended: true
-}));
+app.use(express.json());
+
+//database
+const db = process.env.DATABASE
+
+mongoose.connect(db);
 
 
 // view engine

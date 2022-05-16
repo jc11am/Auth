@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const { isEmail } = require("validator");
 
 
@@ -17,11 +18,18 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+//hooks
+//hash password
+
+userSchema.pre("save", async function(next){
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+})
+
+
+const AUser = mongoose.model("AUser", userSchema)
 
 
 
-const User = mongoose.model("User", userSchema)
-
-
-
-module.exports = User;
+module.exports = AUser;

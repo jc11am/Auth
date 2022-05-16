@@ -10,7 +10,7 @@ router.get("/smoothies", render.smoothies);
 router.get("/login", render.login);
 router.post("/login",);
 router.get("/register", render.register);
-router.post("/register", );
+router.post("/register",render.register_post );
 
 
 module.exports = router;
