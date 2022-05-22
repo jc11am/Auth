@@ -44,10 +44,6 @@ exports.home = (function(req, res){
     res.render("home")
 });
 
-exports.smoothies = (function(req, res){
-    res.render("smoothies")
-});
-
 exports.login = (function(req, res){
     res.render("login")
 });
@@ -89,5 +85,6 @@ exports.register_post = async function(req, res){
 };
 
 exports.logout = (function(req, res){
-    res.render("/")
+    res.cookie("jwt", "", {maxage: 1});
+    res.redirect("/")
 });
